@@ -42,7 +42,8 @@ class PropertyRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    private function findVisibleQuery (): QueryBuilder {
+    private function findVisibleQuery (): QueryBuilder 
+    {
         return $this->createQueryBuilder('p')
         ->where('p.sold = false');
     }
