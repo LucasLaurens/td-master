@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User implements UserInterface\Serializable
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -84,7 +84,7 @@ class User implements UserInterface\Serializable
      */
     public function serialize () 
     {
-        return $this->serialize([
+        return serialize([
             $this->id,
             $this->username,
             $this->password
