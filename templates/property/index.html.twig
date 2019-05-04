@@ -3,6 +3,23 @@
 {% block title 'Tous les biens' %}
 
 {% block body %}
+<div class="jumbotron">
+    <div class="container">
+        {{form_start(form)}}
+        <div class="form-row">
+            <div class="col">
+                {{form_row(form.minSurface)}}
+            </div>
+            <div class="col">
+                {{form_row(form.maxPrice)}}
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </div>
+        {{form_end(form)}}
+    </div>
+</div>
 <div class="container mt-4">
     <h1>Bienvenue sur les biens</h1>
     <div class="row">
