@@ -11,6 +11,7 @@ use App\Form\PropertyType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use App\Entity\Option;
 
 class AdminPropertyController extends AbstractController {
 
@@ -70,6 +71,10 @@ class AdminPropertyController extends AbstractController {
      */
     public function edit(Property $property, Request $request) 
     {
+
+        // $option = new Option();
+        // $property->addOption($option);
+
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
 
