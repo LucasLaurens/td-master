@@ -51,6 +51,7 @@ class PropertyController extends AbstractController{
             $request->query->getInt('page', 1),
             12
         );
+
         return $this->render('property/index.html.twig', [
             'current_menu' => 'properties',
             'properties' => $properties,
