@@ -1,0 +1,26 @@
+{
+    "devDependencies": {
+        "@babel/core": "^7.4.4",
+        "@babel/preset-env": "^7.4.4",
+        "@symfony/webpack-encore": "^0.27.0",
+        "babel-loader": "^8.0.5",
+        "babel-preset-env": "^1.7.0",
+        "core-js": "^3.0.0",
+        "jquery": "^3.4.1",
+        "webpack-cli": "^3.3.2",
+        "webpack-notifier": "^1.6.0"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@babel/preset-flow": "^7.0.0",
+        "select2": "^4.0.7-rc.0",
+        "yarn": "^1.15.2"
+    }
+}
