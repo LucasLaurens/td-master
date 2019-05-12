@@ -9,6 +9,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController {
 
     /**
+     * Description : 
+     * 
      * @Route("/", name="home")
      * @param PropertyRepository $repository
      * @return Response

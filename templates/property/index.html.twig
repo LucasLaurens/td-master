@@ -26,13 +26,15 @@
 <div class="container mt-4">
     <h1>Bienvenue sur les biens</h1>
     <div class="row">
+    {# boucle qui va chercher tous les liens un par un #}
     {% for property in properties %}
     <div class="col-md-4">
+    {# va chercher template de la page des biens #}
         {% include('property/_property.html.twig') %}
     </div>
     {% endfor %}
     </div>
-    <div class="pagination">
+    <div class="pagination pagination-color">
         {{ knp_pagination_render(properties) }}
     </div>
 </div>

@@ -13,6 +13,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use App\Entity\Option;
 use Symfony\Bundle\FrameworkBundle\CacheWarmer\RouterCacheWarmer;
+use Knp\Component\Pager\PaginatorInterface;
+use App\Entity\PropertySearch;
 
 class AdminPropertyController extends AbstractController {
 
@@ -35,9 +37,16 @@ class AdminPropertyController extends AbstractController {
      * @Route("/admin", name="admin.property.index")
      * @return Response
      */
-    public function index() 
+    public function index(PaginatorInterface $paginator, Request $request) 
     {
-        $properties = $this->repository->findAll();
+        $search = new PropertySearch();
+        // $properties = $this->repository->findAll();
+        $properties = $paginator->paginate(
+            $this->repository->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1),
+            12
+        );
+
         return $this->render('admin/property/index.html.twig', compact('properties'));
     }
 
