@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
+ * Description: Grâce au composant UniqueEntity cela nous permet de dire par exemple dans le cas du titre qu'il ne peut pas avoir deux biens avec le meme
+ * On inclut le bundle Vich Uploader 
+ * 
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
  * @UniqueEntity("title")
  * @Vich\Uploadable()
@@ -39,6 +42,11 @@ class Property
     private $filename;
 
     /**
+     * Description: on ajoute une variable filename et imageFile
+     * grace au bundle on map et on lui donne la propriété de notre première variable qui est une string
+     * et on lui donne un format pour pas que les users download n'importe quoi on dit aussi que c'est un type File (fichier)
+     * En dessous on créer les setter et getter afin de les récupérer dans d'autres fichiers
+     * 
      * @var File|null
      * @Vich\UploadableField(mapping="property_image", fileNameProperty="filename")
      * @Assert\Image(mimeTypes="image/jpeg")
@@ -46,6 +54,8 @@ class Property
     private $imageFile;
 
     /**
+     * Description: grace au composant Assert cela nous permet d'ajouter des conditions de validation comme la taille minimum et maximum pour un titre
+     * 
      * @Assert\Length(min=5, max=255)
      * @ORM\Column(type="string", length=255)
      */
@@ -57,6 +67,8 @@ class Property
     private $description;
 
     /**
+     * Description: le Range sert à dire la valeur min et max
+     * 
      * @ORM\Column(type="integer")
      * @Assert\Range(min=10, max=400)
      */
@@ -98,12 +110,16 @@ class Property
     private $adress;
 
     /**
+     * Description: on créer une expression régulière qui dit que l'on veut seulement des nombres et qu'il en faut 5 vues que c'est un code postal FR
+     * 
      * @ORM\Column(type="string", length=255)
      * @Assert\Regex("/^[0-9]{5}$/")
      */
     private $postal_code;
 
     /**
+     * Description : par defaut les biens ne sont pas vendus
+     * 
      * @ORM\Column(type="boolean", options={"default": false})
      */
     private $sold = false;
@@ -114,11 +130,17 @@ class Property
     private $created_at;
 
     /**
+     * Description: On voit que la variable option a été créé avec le inversedBy car c'est les propriétés qui sont l'axe principal le "Owning"
+     * Toujours en ManyToMany et on voit que les méthodes get add et remove ont aussi été créés comme dans le option.php
+     * 
      * @ORM\ManyToMany(targetEntity="App\Entity\Option", inversedBy="properties")
      */
     private $options;
 
     /**
+     * Description : on créer une variable du type datetime qui servira à récuperer la date des updates et on créer le setter et le getter comme pour les autres variables
+     * et on initialise la date de création dans le constructor 
+     * 
      * @ORM\Column(type="datetime")
      */
     private $updated_at;
@@ -145,6 +167,9 @@ class Property
         return $this;
     }
 
+    /**
+     * Description: On créer un getter avec la méthode slugify qui va permettre de générer un slug avec le titre pour le mettre dans une url 
+     */
     public function getSlug(): string {
         return (new Slugify())->slugify($this->title);
     }
@@ -214,6 +239,9 @@ class Property
         return $this->price;
     }
 
+    /**
+     * Description : on créer un getter pour formater le prix qu'on va ensuite appeler dans la vue templates/pages/home
+     */
     public function getFormattedPrice (): string {
         return number_format($this->price, 0, '', ' ');
     }
@@ -361,6 +389,9 @@ class Property
     }
 
     /**
+     * Description: Pour le set image on rajoute un paramètre qui va récupérer la variable imageFile et on dit que si l'image récupérée est une instance (correspond bien à) de UploadFedile 
+     * alors on accepte d'update et donc la date du poste change
+     * 
      * Set the value of imageFile
      * @param  File|null  $imageFile
      * @return  Property

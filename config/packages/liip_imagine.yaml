@@ -1,4 +1,6 @@
 # See dos how to configure the bundle: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
+# on a téléchargé le bundle liip qui nous permet de créer des filtres notamment sur les images 
+# on créer donc le filtre miniature avec une qualité, une taille et le mode pour savoir où l'image se place et ensuite un filtre médium pour le show.twig donc le lien où l'on voit un bien sur lequel on a cliqué
 liip_imagine:
     filter_sets:
         thumb:

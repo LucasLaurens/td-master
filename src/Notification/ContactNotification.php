@@ -16,6 +16,14 @@ class ContactNotification {
      */
     private $renderer;
 
+    /**
+     * Description: On fait appel au Swift_Mailer pour l'envoi d'email et à l'environnement pour le rendu HTML 
+     * ensuite avec la function notify on set le message : 
+     * On récupère la propriété donc le bien et son titre pour le reconnaître 
+     * ensuite on set d'où le mail vient, à qui il va-t-il être envoyé et à qui on va devoir répondre 
+     * puis le body qui est une view que l'on doit créer (contact.html.twig)
+     * Et on envoie le mail avec la méthode send
+     */
     public function __construct(\Swift_Mailer $mailer, Environment $renderer) 
     {
         $this->mailer = $mailer;

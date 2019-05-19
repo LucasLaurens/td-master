@@ -8,4 +8,5 @@
 #    controller: App\Controller\DefaultController::index
 
 logout:
+  # on creer la route logout 
   path: /logout

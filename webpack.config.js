@@ -42,6 +42,8 @@ Encore
     .enableVersioning(Encore.isProduction())
 
     // enables @babel/preset-env polyfills
+    // Description: on a téléchargé webpack et on initialise babel  que l'on export par la suite afin de pouvoir l'utiliser sur notre fichier js
+    // on dit aussi que l'on va utiliser jQuery
     .configureBabel(() => {}, {
         useBuiltIns: 'usage',
         corejs: 3

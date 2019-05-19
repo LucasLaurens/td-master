@@ -9,12 +9,13 @@
 <div class="container" style="margin-bottom: 1rem;">
     <h2>Les derniers biens</h2>
     <div class="row flex">
-        {# boucle qui va chercher tous les liens un par un #}
+        {# boucle qui va chercher toutes les propriétés de par leur getter #}
         {% for property in properties %}
             <div class="col-3 col-sm-6 mt-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">
+                        {# grace au getter getSlug (Property) je peux donner le titre appelé dans la methode show (PropertyController) de mon slug suivit de l'id et du chemin  #}
                             <a class="text-info" href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">{{property.title}}</a>
                         </h5>
                         <p class="card-text">{{property.city}} ({{property.postalCode}})</p>

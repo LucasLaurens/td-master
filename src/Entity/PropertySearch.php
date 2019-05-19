@@ -4,6 +4,13 @@ namespace App\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
+/**
+ * 
+ * Description: on a créé une entité search afin d'avoir des setter et des getter qui seront de type integer
+ * avec quelques paramètres assert comme pour le champ surface qui ne peut pas avoir moins de 10 et plus de 400 m aux carres
+ * on a aussi créé les getter et setter de Option pour la recherche afin de les récupérer avec un tableau du type Symfony => ArrayCollection(il est possible d'utiliser plusieurs clés dans ces tableaux assez facilement)
+ */
+
 class PropertySearch {
 
     /**

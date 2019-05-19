@@ -1,8 +1,10 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
+        #on explique que notre méthode pour creer ou récupérer un user sera faite avec la database
         from_database:
             entity:
+                #on explique que la classe utilisée sera User avec la propriété username
                 class: App\Entity\User
                 property: username
     firewalls:
@@ -11,6 +13,7 @@ security:
             security: false
         main:
             anonymous: true
+            # on définit le chemin pour se déconnecter et sa redirection
             logout:
                 path: /logout
                 target: /
@@ -20,6 +23,7 @@ security:
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
             form_login: 
+                # on definit le chemin pour se connecter car celui par défault est login_check
                 check_path: login
             # https://symfony.com/doc/current/security/form_login_setup.html
 
@@ -29,6 +33,7 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
     
+    # on creer un encodé pour que le mot de passe une fois envoyer en base de données soit chiffré et non en clair grace à la méthode bcrypt
     encoders:
         App\Entity\User:
             algorithm: bcrypt

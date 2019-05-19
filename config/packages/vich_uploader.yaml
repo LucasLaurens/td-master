@@ -6,3 +6,7 @@ vich_uploader:
             uri_prefix: /images/properties
             upload_destination: '%kernel.project_dir%/public/images/properties'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
+
+# on a téléchargé le bundle ci-dessus et par défaut il utilise l'Orm
+# et on le map c'est-à-dire que le chemin qu'on lui donne /images/properties et donc il créra les dossiers s'ils n'existent pas
+# et on donne un namer afin d'avoir des noms génériques pour chaque fichier images

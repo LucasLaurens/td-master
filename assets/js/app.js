@@ -6,6 +6,9 @@
  */
 
 // any CSS you require will output into a single css file (app.css in this case)
+// Vu que l'on a initialisé web pack, babel, jquery dans notre web pack.config on peut appeler nos librairies comme select2
+// si l'on décide d'utiliser cette method on cache les éléments dans notre vue property show
+// et on dit que si on clique sur le bouton les éléments apparaissent en diapositive vers le haut ou vers le bas
 let $ = require('jquery')
 require('../css/app.css');
 require('select2')

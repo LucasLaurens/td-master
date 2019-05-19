@@ -14,6 +14,7 @@
                 </div>
             </div> 
         </div>
+        {# on créer une boucle pour dire que le message s'affiche si message il doit y avoir dans ce cas présent le succès #}
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{message}}
@@ -32,6 +33,11 @@
                     <tr>
                         <td>{{property.title}}</td>
                         <td>
+                        {# 
+                        suite à la création de la méthode delete dans AdminPropertyController nous créons le formulaire avec l'action delete à l'endroit de l'id de la propriété
+                        Ou l'on ajoute deux input , l'un pour la méthode avec une value DELETE afin que la fonction reconnaisse le formulaire
+                        et l'autre avec l'autogénération d'un token afin d'avoir une validation sécurisée avec une méthode confirm pour que l'utilisateur ne supprime pas par erreur
+                         #}
                             <a href="{{ path('admin.property.edit', {id: property.id}) }}" class="btn btn-secondary">Editer</a>
                             <form method="post" action="{{ path('admin.property.delete', {id: property.id}) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous vraiment sûr ?')">
                                 <input type="hidden" name="_method" value="DELETE" />
@@ -45,6 +51,7 @@
         </table>
     </div>
     <div class="container mt-4">
+        {# Grâce au bundle KNP on ajoute une pagination des biens #}
         <div class="pagination pagination-color">
             {{ knp_pagination_render(properties) }}
         </div>

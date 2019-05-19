@@ -9,6 +9,7 @@
             {{message}}
         </div>
     {% endfor %}
+    {# si le formulaire de contact n'est pas valide alors on envoie un message d'erreur #}
     {% if not form.vars.valid %}
         <div class="alert alert-danger">
             Il y a une erreur dans la soumission du formulaire
@@ -16,6 +17,7 @@
     {% endif %}
     <div class="row">
         <div class="col-md-8">
+        {# on dit que s'il existe un fichier alors on va chercher l'image (imageFile) et on lui applique le filtre medium créé dans le yaml sinon on applique une image par defaut avec un autre filtre #}
          {% if property.filename %}
         <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('medium')}}" alt="card-img-top" style="width: 100%; height: auto;" />
         {% else %}
@@ -26,8 +28,11 @@
             <h1>{{property.title}}</h1>
             <h1>{{property.rooms}} pièces - {{property.surface}} m²</h2>
             <div class="text-info" style="font-weight: bold; font-size: 2rem;">{{property.formattedPrice}}$</div>
+            {# Si l'on utilise webpack on peut créer un bouton que l'on cache et que l'on appellera dans le js grace à l'id et on ajoute une condition
+            si le formulaire n'est pas soumis on laisse en display none sinon notre js (app.js) s'effectue et les elements apparaissent  #}
             {# <a href="#" class="btn btn-primary" id="contactButton" {% if form.vars.submitted %}style="display:none;"{% endif %}>Contacter l'agence</a> #}
             <div id="contactForm" class="mt-4">
+            {# on affiche le formulaire de contact #}
                 {{form_start(form)}}
                 <div class="row">
                     <div class="col">{{form_row(form.firstname)}}</div>

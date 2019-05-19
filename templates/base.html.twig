@@ -5,6 +5,7 @@
         <title>{% block title %}App Td Symfony!{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6/css/select2.min.css">
+         {# Si l'on utilise webpack on peut appeler notre fichier comme présentement ci-dessous #}
         {# <link rel="stylesheet" href="{{ asset('build/app.css') }}"/> #}
         {% block stylesheets %}
         <style>
@@ -32,12 +33,14 @@
                     <li class="nav-item">
                         <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}" href="{{path('property.index')}}">Acheter</a>
                     </li>
+                    {# si l'application n'a pas de user alors on affiche le lien et si le menu est définit et qu'il est le lien courant alors on ajoute la classe active #}
                     {% if app.user == false %}
                     <li class="nav-item">
                         <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}" href="{{path('login')}}">Connexion admin</a>
                     </li>
                     {% endif %}
                 </ul>
+                {# on affiche ces liens si un user existe dans notre application #}
                 {% if app.user %}
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -61,9 +64,11 @@
         {% block javascripts %}
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6/js/select2.min.js"></script>
         <script>
+            {# on dit que tous les "select" utilisent la librairie select2 #}
             $('select').select2();
         </script>
         {% endblock %}
+        {# Si l'on utilise webpack on peut appeler notre fichier comme présentement ci-dessous #}
         {# <script src="{{ asset('build/app.js') }}"></script> #}
     </body>
 </html>

@@ -22,6 +22,7 @@
                     <tr>
                         <td>{{option.name}}</td>
                         <td>
+                        {# On créer un formulaire avec un token et l'id du bien afin de savoir lequel s'est et pouvoir le sécuriser et enfin le supprimer #}
                             <a href="{{ path('admin.option.edit', {id: option.id}) }}" class="btn btn-secondary">Editer</a>
                             <form method="post" action="{{ path('admin.option.delete', {id: option.id}) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous vraiment sûr ?')">
                                 <input type="hidden" name="_method" value="DELETE" />
@@ -35,6 +36,7 @@
         </table>
 
         <div class="text-right">
+        {# on ajoute un lien vers la route qui permet de créer un nouveau bien #}
             <a href="{{ path('admin.option.new') }}" class="btn btn-primary">Créer une nouvelle option</a>
         </div>
     </div>

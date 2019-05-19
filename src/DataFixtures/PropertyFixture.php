@@ -9,6 +9,12 @@ use Faker\Factory;
 
 class PropertyFixture extends Fixture
 {
+    /**
+     * Description: On créer un nouveau Fixture avec le cmd afin de créer des biens fictifs rapidement dans la bdd 
+     * ensuite on télécharge la librairie faker qui permet de set plus facilement les champs (local français)
+     * on fait une boucle afin qu'il applique ces configurations pour 100 biens 
+     * ensuite on creer chaque champ puis on l'envoie à la base de données
+     */
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');

@@ -1,7 +1,8 @@
-{# Gere le cache des images update #}
+{# Gère le cache des images update 
+On lui donne le tag, l'id et le temps donc quand a-t-il été modifié #}
 {% cache 'property' ~ property.id property.updatedAt.timestamp|default(date().timestamp) %}
 <div class="card mb-4">
-    {# si des images sont postées alors affiche l'image postée si non celle par default #}
+    {# si des images sont postées alors affiche l'image postée sinon celle par defaut #}
     {% if property.filename %}
     <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('thumb')}}" alt="card-img-top" style="width: 100%; height: auto;" />
     {% else %}

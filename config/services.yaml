@@ -30,10 +30,14 @@ services:
     #     tags: ['controller.service_arguments']
     #     arguments:
     #         $twig: '@twig'
+    # on créer un nouveau service pour les images qui est en fait un event afin de le charger (le namespace) ensuite dans notre fichier.php (cette class correspond à un tag )
     App\Listener\ImageCacheSubscriber:
         tags:
         - {name: doctrine.event_subscriber}
-
+    # On appel ces class pour faire fonctionner le cache via twig
+    # tout d'abord on utilise l'extension cache à qui on done un tag name
+    # ensuite on lui donne la class du LifeTime pour qu'il sache qu'est ce qu'il doit mettre en cache ou non 
+    # puis on y ajoute le cacheProvider afin de l'instancier dans notre vue
     Twig\CacheExtension\CacheProviderInterface:
         class: Twig\CacheExtension\CacheProvider\PsrCacheAdapter
 

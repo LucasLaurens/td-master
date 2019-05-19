@@ -1,4 +1,5 @@
 {{ form_start(form) }}
     {{form_rest(form)}}
+    {# si on ne choisit pas de texte celui du bouton sera par defaut "Enregistrer" #}
     <button class="btn btn-primary">{{button|default('Enregistrer')}}</button>
 {{ form_end(form) }}

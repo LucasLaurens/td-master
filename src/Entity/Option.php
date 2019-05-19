@@ -7,6 +7,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Description: On commence par créer un CRUD option avec l'invite de commande en ManyToMany car une option peut être attribué à plusieurs biens et des biens peuvent être attribués à plusieurs options
+ * On voit que l'on utilise le mappedBy afin de dire qu'il sera relié au inversedBy (qui est le principal call) 
+ * On créer donc un constructeur afin d'initialiser un tableau Symfony avec trois méthodes qui sont ajoutées automatiquement (get, add & remove) pour gérer le crud
+ * 
  * @ORM\Entity(repositoryClass="App\Repository\OptionRepository")
  * @Orm\Table(name="`Option`")
  */

@@ -4,6 +4,7 @@
 
 {% block body %}
 <div class="jumbotron">
+{# on ajoute le formulaire pour effectuer une recherche parmit tous les biens #}
     <div class="container">
         {{form_start(form)}}
         <div class="form-row">
@@ -29,11 +30,12 @@
     {# boucle qui va chercher tous les liens un par un #}
     {% for property in properties %}
     <div class="col-md-4">
-    {# va chercher template de la page des biens #}
+    {# On va chercher le template de la page des biens #}
         {% include('property/_property.html.twig') %}
     </div>
     {% endfor %}
     </div>
+    {# On utilise la methode du bundle afin de paginer #}
     <div class="pagination pagination-color">
         {{ knp_pagination_render(properties) }}
     </div>

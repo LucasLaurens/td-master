@@ -19,6 +19,8 @@ use App\Notification\ContactNotification;
 class PropertyController extends AbstractController{
 
     /**
+     * Description: on initialise le repository
+     * 
      * @var PropertyRepository
      */
     private $repository;
@@ -37,11 +39,17 @@ class PropertyController extends AbstractController{
     }
 
     /**
+     * Description: On injecte le PaginatorInterface pour appliquer la pagination via le bundle knp que l'on a téléchargé via composer
+     * on crée la méthode paginate à laquelle on envoie la méthode afin de trouver tous les biens et on envoie la requête (que l'on injecte aussi) 
+     * pour dire que l'on veut les pages et si aucune n'est demandé par défaut ça sera la page 1 et on dit que par défaut il faut 12 biens par page
+     * puis on l'envoie a la vue index
+     * on créer également une nouvelle recherche via le PropertySearch puis on créer un form via PropertySearchType à qui on donne la recherche en paramètre
+     * et ensuite on fait une requête et on l'envoie à la vue
+     * 
      * @Route("/biens", name="property.index")
      * @return Response
      */
     public function index(PaginatorInterface $paginator, Request $request): Response {
-        // $properties = $this->repository->findAllVisible();
         $search = new PropertySearch();
         $form = $this->createForm(PropertySearchType::class, $search);
         $form->handleRequest($request);
@@ -60,6 +68,14 @@ class PropertyController extends AbstractController{
     }
 
     /**
+     * Description : après avoir créé la méthode getter getSlug on définit une route avec un nom que l'on va réutiliser dans la vue et un paramètre regex qui dit que l'on peut avoir certains caractères
+     * Ensuite si le slug est différent de celui renvoyé alors on le redirige sur le bon slug (et on lui renvoie le status)
+     * En ce qui concerne l'email on créer un nouveau formulaire de contact grâce à la class on set la property pour connaître le bien sur lequel on se trouve lors de l'envoi d'email
+     * On créer le form par rapport à la class ContactType où l'on a initialiser les champs qu'on envoie ensuite à la view
+     * On dit au form de gérer la requête et si celle-ci donc si le form est submit et valid (avec tous les critères respectés (pas d'erreur))
+     * alors on fait appel à la class ContactNotification afin de gérer l'envoi de notre message avec son body sous format HTML 
+     * Le message de succès et la redirection vers ce bien avec l'id et le slug
+     * 
      * @Route("/biens/{slug}-{id}", name="property.show", requirements={"slug": "[a-z0-9\-]*"})
      * @param Property $property
      * @return Response
@@ -95,24 +111,3 @@ class PropertyController extends AbstractController{
     }
 
 }
-
-
-// $property = new Property();
-        // $property->setTitle('Mon premier bien')
-        //     ->setPrice(2000)
-        //     ->setRooms(4)
-        //     ->setBedrooms(3)
-        //     ->setDescription('Nouvelle chambre de libre')
-        //     ->setSurface(60)
-        //     ->setFloor(4)
-        //     ->setHeat(1)
-        //     ->setCity('Annecy')
-        //     ->setAdress('202 route des craix')
-        //     ->setPostalCode('34000');
-        // $em = $this->getDoctrine()->getManager();
-        // $em->persist($property);
-        // $em->flush();
-        // $repository = $this->getDoctrine()->getRepository(Property::class);
-        // dump($repository);
-        // $property[0]->setSold(true);
-        // $this->em->flush();

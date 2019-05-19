@@ -6,6 +6,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Contact {
 
     /**
+     * 
+     * Description: Donc on créer une Entité Contact afin de set tous nos champs: (chacun d'entre eux ne doit pas être vide NotBlank())
+     * Donc firstname et lastname (avec une longueur minimum et maximum)
+     * Phone avec un regex qui permet de dire que l'on veut 10 numéros allant de 0 à 9
+     * Email qui est de type email et message avec une longueur minimum
+     * Enfin une variable property afin de récupérer le bien sur lequel on se trouve 
+     * et la création des getter et setter afin de pouvoir les utiliser sur d'autres fichiers
+     * 
      * @var string|null
      * @Assert\NotBlank()
      * @Assert\Length(min=2, max=100)

@@ -9,11 +9,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class OptionType extends AbstractType
 {
+    /**
+     * Description: on enlève le add properties pour créer des options avec juste le nom de l'option
+     * 
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
-            // ->add('properties')
         ;
     }
 

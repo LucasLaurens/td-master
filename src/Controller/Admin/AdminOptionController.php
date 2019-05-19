@@ -11,6 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * Description: Grace à l'invite de commande le fichier d'administration des options a également été créé 
+ * on a juste changé la route pour qu'elle soit vue par les users comme admin
+ * Le reste ce sont les requêtes pour la création des options envoyer à nos vues twig que j'ai duppliquer des propriétés avec les méthodes de base comme edit remissait new et index
+ * 
  * @Route("/admin/option")
  */
 class AdminOptionController extends AbstractController
